@@ -10,5 +10,6 @@ proc-macro = true
 
 [dependencies]
 convert_case = { version = "0.4" }
+proc-macro-error = { version = "1" }
 quote = { version = "1" }
 syn = { version = "1" }
