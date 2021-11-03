@@ -2,11 +2,14 @@ use component_macros::*;
 use mk::{run, EngineError};
 use std::env::current_dir;
 
-#[derive(ValueComponent)]
-pub struct Layer(u64);
+#[derive(Component)]
+pub struct Layer(
+    #[animate(ty = "integer", name = "value1")] u64,
+    #[animate(ty = "float", name = "value2")] f32,
+);
 
 #[derive(Component)]
-struct Struct {
+pub struct Struct {
     #[animate(ty = "integer", name = "position.x")]
     pub x: f32,
     #[animate(ty = "float", name = "position.y")]
