@@ -1,0 +1,45 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug executable 'mk-tools'",
+			"cargo": {
+				"args": [
+					"build",
+					"--bin=mk-tools",
+					"--package=mk-tools"
+				],
+				"filter": {
+					"name": "mk-tools",
+					"kind": "bin"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug unit tests in executable 'mk-tools'",
+			"cargo": {
+				"args": [
+					"test",
+					"--no-run",
+					"--bin=mk-tools",
+					"--package=mk-tools"
+				],
+				"filter": {
+					"name": "mk-tools",
+					"kind": "bin"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		}
+	]
+}
