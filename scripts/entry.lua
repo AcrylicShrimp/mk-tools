@@ -7,15 +7,43 @@ mk.Entity.build {
     }
 };
 
-local test_button = ui.createButton('test', 100, 30, 'Click me!')
-test_button.button.transform.position = {
-    x = 0,
-    y = 100
-};
-
 local normal = mk.SpriteNinePatch.load("button")
 local hover = mk.SpriteNinePatch.load("button_hover")
 local down = mk.SpriteNinePatch.load("button_down")
+
+function make_button_random(i)
+    local button = ui.createButton("button_" .. i, 100, 100, "Button " .. i, 20, i)
+    button.button.transform.position = {
+        x = math.random(-400, 400),
+        y = math.random(-400, 400)
+    };
+    
+    button.button:listen("mouse-enter", function()
+        button.button.nine_patch_renderer.nine_patch = hover
+    end)
+    
+    button.button:listen("mouse-exit", function()
+        button.button.nine_patch_renderer.nine_patch = normal
+    end)
+    
+    button.button:listen("mouse-down", function(event)
+        button.button.nine_patch_renderer.nine_patch = down
+    end)
+    
+    button.button:listen("mouse-up", function(event)
+        button.button.nine_patch_renderer.nine_patch = hover
+    end)
+end
+
+for i = 0, 100 do
+    make_button_random(i * 2)
+end
+
+-- local test_button = ui.createButton('test', 100, 30, 'Click me!', 16, 0)
+-- test_button.button.transform.position = {
+--     x = 0,
+--     y = 100
+-- };
 
 -- mk.Event.KeyDown.listen(function(event)
 --     print(event.key)
@@ -52,19 +80,3 @@ local down = mk.SpriteNinePatch.load("button_down")
 -- mk.Event.PointerMove.listen(function(event)
 --     print('pointer move', event.pointer_x, event.pointer_y)
 -- end)
-
-test_button.button:listen("mouse-enter", function()
-    test_button.button.nine_patch_renderer.nine_patch = hover
-end)
-
-test_button.button:listen("mouse-exit", function()
-    test_button.button.nine_patch_renderer.nine_patch = normal
-end)
-
-test_button.button:listen("mouse-down", function(event)
-    test_button.button.nine_patch_renderer.nine_patch = down
-end)
-
-test_button.button:listen("mouse-up", function(event)
-    test_button.button.nine_patch_renderer.nine_patch = hover
-end)
