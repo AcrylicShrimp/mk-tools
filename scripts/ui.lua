@@ -1,13 +1,15 @@
+
+local font_scale = 5
 local table = {}
 
-table.createButton = function(name, width, height, text)
+table.createButton = function(name, width, height, text, font_size, order_index)
     local button = mk.Entity.build {
         name = name,
         ui_element = {
-            order_index = 0
+            order_index = order_index
         },
         nine_patch_renderer = {
-            order = 0,
+            order = order_index,
             shader = mk.Shader.load("nine-patch"),
             nine_patch = mk.SpriteNinePatch.load("button"),
             width = width,
@@ -19,27 +21,28 @@ table.createButton = function(name, width, height, text)
         transform = {
             parent = button.transform,
             position = {
-                x = width / 2 - 100,
-                y = 8 - height / 2
+                x = 0,
+                y = (font_size - height) / 2
             },
             scale = {
-                x = 0.25,
-                y = 0.25
+                x = 1 / font_scale,
+                y = 1 / font_scale
             }
         },
         ui_element = {
             is_interactible = false,
-            order_index = 1
+            order_index = order_index + 1
         },
         glyph_renderer = {
-            order = 1,
+            order = order_index + 1,
             color = mk.Color.black(),
             shader = mk.Shader.load("glyph"),
             font = mk.Font.load("neodgm"),
-            font_size = 64,
+            font_size = font_size * font_scale,
             config = {
-                max_width = 800,
-                horizontal_align = "center"
+                max_width = width * font_scale,
+                horizontal_align = "center",
+                vertical_align = "middle"
             },
             text = text
         }
