@@ -12,7 +12,7 @@ local hover = mk.SpriteNinePatch.load("button_hover")
 local down = mk.SpriteNinePatch.load("button_down")
 
 function make_button_random(i)
-    local button = ui.createButton("button_" .. i, 100, 100, "Button " .. i, 20, i)
+    local button = ui.createButton("button_" .. i, 150, 100, "Btn " .. i, 26, i)
     button.button.transform.position = {
         x = math.random(-400, 400),
         y = math.random(-400, 400)
